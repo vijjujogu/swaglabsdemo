@@ -8,6 +8,9 @@ public class Constants {
 	public final static String configpath = PROJECT_BASE_PATH + "/resource/Config.properties";
 	public final static String locator_path = PROJECT_BASE_PATH + "/resource/locators/locators.properties";
 	public final static String testdata_path= PROJECT_BASE_PATH + "/resource/testdata/testdata.xlsx";
+	public final static String testng1= PROJECT_BASE_PATH + "testng1.xml";
+	public final static String testng2= PROJECT_BASE_PATH + "testng2.xml";
+	
 
 
 }

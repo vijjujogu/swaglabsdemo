@@ -1,18 +1,23 @@
 package com.swaglabsdemo.util;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import com.swaglabs.constants.Constants;
 
@@ -69,16 +74,22 @@ public class Util {
 			return data;
 		}
 		
-		public void clickonElement(WebDriver driver,String locator)
-		{
-			driver.findElement(By.xpath(locator)).click();
+		
+		
+		
+		//logic for taking screenshots
+		public static void takeScreenshotAtEndOfTest(WebDriver driver) throws IOException {
+			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+			String currentDir = System.getProperty("user.dir");
+			FileUtils.copyFile(scrFile, new File(currentDir + "/screenshots/" + System.currentTimeMillis() + ".png"));
 		}
-		public void sendvalues(WebDriver driver,String locator,String value) {
-			driver.findElement(By.id(locator)).sendKeys(value);
+		
+		
 			
-		}
+
 		
 		
 
+		
 		
 }

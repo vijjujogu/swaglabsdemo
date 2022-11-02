@@ -6,8 +6,9 @@
       <class name="com.swaglabsdemo.testscripts.LoginTest">
         <methods>
           <include name="setUp"/>
+          <include name="loginPageTitleTest"/>
+          <include name="exit"/>
           <include name="loginTest"/>
-          <include name="tearDown"/>
         </methods>
       </class> <!-- com.swaglabsdemo.testscripts.LoginTest -->
     </classes>

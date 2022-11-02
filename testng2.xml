@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="TestSuite" thread-count="1" parallel="tests" >
+
+<listeners>
+		<listener class-name="com.swaglabsdemo.util.ExtentReporterNG" />
+	</listeners>
+
+<test name="ChromeTest">
+
+<parameter name="browserName" value="chrome" />
+
+<classes>
+
+<class name="com.swaglabsdemo.testscripts.HomePage">
+
+</class>
+
+</classes>
+
+</test>
+
+<test name="edgeTest">
+
+<parameter name="browserName" value="edge" />
+
+<classes>
+
+<class name="com.swaglabsdemo.testscripts.HomePage">
+
+</class>
+
+</classes>
+
+</test>
+
+
+
+</suite>

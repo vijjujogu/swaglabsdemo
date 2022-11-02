@@ -4,21 +4,23 @@ package com.swaglabsdemo.testscripts;
 
 import java.util.Properties;
 
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import com.swaglabs.constants.Actions;
 import com.swaglabs.constants.Constants;
-import com.swaglabs.pages.LoginPage;
 
 import com.swaglabsdemo.TestBase.TestBase;
+import com.swaglabsdemo.util.Constantvalues;
 import com.swaglabsdemo.util.Util;
 
 public class LoginTest extends TestBase{
 	
-	LoginPage login=new LoginPage();
+	Actions ac=new Actions();
 	
 	@BeforeMethod
 	@Parameters("browserName")
@@ -40,20 +42,26 @@ public class LoginTest extends TestBase{
 	{
 		Properties prop = Util.readProperties(Constants.locator_path);
 		String locatorusername = prop.getProperty("locator.username");
-		login.enterUsername(locatorusername,username);
+		ac.sendvalues(driver, locatorusername,username);
 		System.out.println("entered username");
 		String locatorpwd = prop.getProperty("locator.pwd");
-		login.enterPassword(locatorpwd,password);
+		ac.sendvalues(driver, locatorpwd,password);
 		System.out.println("entered pwd");
 		String locatorlogin = prop.getProperty("locator.loginbutton");
-		login.clickOnLogin(locatorlogin);
+		ac.clickonElement(driver, locatorlogin);
 		System.out.println("clicked");
 		
 	}
+	@Test
+	public void loginPageTitleTest(){
+		String title=ac.getTitleOfPage(driver);
+		ac.verifyResult(title,Constantvalues.Title.toString(),"verification passed");
+	}
 	
 	@AfterMethod
-	public void tearDown(){
-		driver.quit();
+	public void exit()
+	{
+		tearDown();
 	}
 	
 	
