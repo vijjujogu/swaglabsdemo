@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.IReporter;
 import org.testng.IResultMap;
 import org.testng.ISuite;
@@ -17,15 +19,17 @@ import org.testng.xml.XmlSuite;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
+import com.swaglabsdemo.TestBase.TestBase;
 
 public class ExtentReporterNG implements IReporter {
 	
 	private ExtentReports extent;
+	 
 
 	public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites,
 			String outputDirectory) {
 		extent = new ExtentReports(outputDirectory + File.separator
-				+ "Extent.html", true);
+				+ "extentReport.html", true);
 
 		for (ISuite suite : suites) {
 			Map<String, ISuiteResult> result = suite.getResults();
@@ -73,6 +77,7 @@ public class ExtentReporterNG implements IReporter {
 		calendar.setTimeInMillis(millis);
 		return calendar.getTime();
 	}
+	
 
 
 }

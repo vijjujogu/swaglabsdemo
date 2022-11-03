@@ -23,6 +23,13 @@ public enum Constantvalues{
 				
 			}
 		},
+		IE{
+			public String toString()
+			{
+				return "IE";
+				
+			}
+		},
     INDEX{
 			public String toString()
 			{

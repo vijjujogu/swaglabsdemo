@@ -1,0 +1,6 @@
+<suite name="Main suite" parallel="suite-file">
+    <suite-files>
+        <suite-file path="C:\\Users\\vijayalakshmi.jogu\\eclipse-workspace\\swaglabsdemo\\resource\\suites\\verifymenutestng.xml" />
+     <suite-file path="C:\\Users\\vijayalakshmi.jogu\\eclipse-workspace\\swaglabsdemo\\resource\\suites\\verifyNegativeLoginTctestng.xml" />
+      </suite-files>
+    </suite>

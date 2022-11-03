@@ -1,6 +1,7 @@
 package com.swaglabs.constants;
 
 import java.util.List;
+import java.util.Properties;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -9,16 +10,34 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import com.swaglabsdemo.util.Constantvalues;
+import com.swaglabsdemo.util.Util;
+
 
 public class Actions {
 	
-	public void clickonElement(WebDriver driver,String locator)
-	{
-		driver.findElement(By.xpath(locator)).click();
+	
+	public String readPropertyFile(String locatorKey) {
+	Properties prop = Util.readProperties(Constants.locator_path);
+	String locator = prop.getProperty(locatorKey);
+	return locator;
 	}
 	
-	public void sendvalues(WebDriver driver,String locator,String value) {
-		driver.findElement(By.id(locator)).sendKeys(value);
+	public void getUrl(WebDriver driver,String locatorKey)
+	{
+		String locatorValue=readPropertyFile(locatorKey);
+		driver.get(locatorValue);
+	}
+	
+	public void clickonElement(WebDriver driver,String locatorKey)
+	{
+		String locatorValue=readPropertyFile(locatorKey);
+		driver.findElement(By.xpath(locatorValue)).click();
+	}
+	
+	public void sendvalues(WebDriver driver,String locatorKey,String value) {
+		String locatorValue=readPropertyFile(locatorKey);
+		driver.findElement(By.id(locatorValue)).sendKeys(value);
 		
 	}
 	public void ClickOnRadioBtn(WebDriver driver,String locator,String value,String comparevalue)
@@ -69,21 +88,23 @@ public class Actions {
 			
 		}
 		
-			
+		
 		}
 	public void switchToFrame(WebDriver driver,String framename) {
 		driver.switchTo().frame(framename);
 	}
 	
-	public String getTextOfElement(WebDriver driver,String locator)
+	public String getTextOfElement(WebDriver driver,String locatorKey)
 	{
-		String text=driver.findElement(By.xpath(locator)).getText();
+		String locatorValue=readPropertyFile(locatorKey);
+		String text=driver.findElement(By.xpath(locatorValue)).getText();
 		return text;
 	}
 	
-	public boolean isElementDisplayed(WebDriver driver,String locator)
+	public boolean isElementDisplayed(WebDriver driver,String locatorKey)
 	{
-		boolean status=driver.findElement(By.xpath(locator)).isDisplayed();
+		String locatorValue=readPropertyFile(locatorKey);
+		boolean status=driver.findElement(By.xpath(locatorValue)).isDisplayed();
 		return status;
 	}
 	
@@ -110,7 +131,7 @@ public class Actions {
 		return text;
 	}
 	//verifying assert
-			public  boolean verifyResult(Object actual,Object expected,String message) {
+			public  boolean verifyPositiveResult(Object actual,Object expected,String message) {
 				try {
 					Assert.assertEquals(actual, expected);
 					System.out.println("PASS : " + message + ": " + "ACTUAL : " + actual + " 	" + "EXPECTED :" + expected);
@@ -119,6 +140,75 @@ public class Actions {
 					catch (AssertionError assertionError) {
 						return false;
 					}
+				
+			}
+			
+			public boolean verifyNegativeResults(Object actual,Object expected,String message)
+			{
+				try {
+					Assert.assertNotEquals(actual, expected);
+					System.out.println("PASS : " + message + ": " + "ACTUAL : " + actual + " 	" + "EXPECTED :" + expected);
+					return true;
+				}
+					catch (AssertionError assertionError) {
+						return false;
+					}
+			}
+			
+			public void verifyPositiveLinks(WebDriver driver,String locatorKey)
+			{
+				String actualTitle=getTitleOfPage(driver);
+				readPropertyFile(locatorKey);
+				clickonElement(driver, locatorKey);
+				System.out.println("clicked");
+				String expectedTitle=getTitleOfPage(driver);
+				verifyPositiveResult(actualTitle,expectedTitle,"verifed");
+				
+
+			}
+			public void verifyNegativeLinks(WebDriver driver,String locatorKey)
+			{
+				String actualTitle=getTitleOfPage(driver);
+				readPropertyFile(locatorKey);
+				clickonElement(driver, locatorKey);
+				System.out.println("clicked");
+				String expectedTitle=getTitleOfPage(driver);
+				verifyNegativeResults(actualTitle,expectedTitle,"verifed");
+				
+
+			}
+			
+			public void login(WebDriver driver,String locatorusername,String locatorpwd,String locatorloginbtn,String username,String pwd)
+			{
+				sendvalues(driver,locatorusername,username);
+				System.out.println("entered username");
+				
+				sendvalues(driver,locatorpwd,pwd);
+				System.out.println("entered pwd");
+				
+				clickonElement(driver, locatorloginbtn);
+				System.out.println("clicked");
+				
+				
+			}
+			
+
+			public void login(WebDriver driver,String locatorusername,String locatorpwd,String locatorloginbtn,String username,String pwd,String locatortitle,String title)
+			{
+				sendvalues(driver,locatorusername,username);
+				System.out.println("entered username");
+				
+				sendvalues(driver,locatorpwd,pwd);
+				System.out.println("entered pwd");
+				
+				clickonElement(driver, locatorloginbtn);
+				System.out.println("clicked");
+				
+				String actualvalue=getTextOfElement(driver, locatortitle);
+				System.out.println("text");
+				
+				verifyPositiveResult(actualvalue, title, "error msg verified");
+				
 				
 			}
 			

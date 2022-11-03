@@ -2,6 +2,7 @@ package com.swaglabsdemo.testscripts;
 
 
 
+import java.io.IOException;
 import java.util.Properties;
 
 
@@ -21,6 +22,8 @@ import com.swaglabsdemo.util.Util;
 public class LoginTest extends TestBase{
 	
 	Actions ac=new Actions();
+	Util ut=new Util();
+	
 	
 	@BeforeMethod
 	@Parameters("browserName")
@@ -55,12 +58,18 @@ public class LoginTest extends TestBase{
 	@Test
 	public void loginPageTitleTest(){
 		String title=ac.getTitleOfPage(driver);
-		ac.verifyResult(title,Constantvalues.Title.toString(),"verification passed");
+		ac.verifyPositiveResult(title,Constantvalues.Title.toString(),"verification passed");
 	}
 	
 	@AfterMethod
 	public void exit()
 	{
+		try {
+			ut.takeScreenshotAtEndOfTest(driver,"scrrenshot");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		tearDown();
 	}
 	
