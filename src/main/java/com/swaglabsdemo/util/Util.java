@@ -20,6 +20,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.ITestResult;
 
 import com.swaglabs.constants.Constants;
 
@@ -80,11 +81,43 @@ public class Util {
 		
 		
 		//logic for taking screenshots
-		public static void takeScreenshotAtEndOfTest(WebDriver driver,String fileName) throws IOException {
+	/**	public static void takeScreenshotAtEndOfTest(WebDriver driver,String methodName) throws IOException {
 			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+			
 			String currentDir = System.getProperty("user.dir");
-			FileUtils.copyFile(scrFile, new File(currentDir + "/screenshots/" + fileName + ".png"));
+			FileUtils.copyFile(scrFile, new File(currentDir + "/screenshots/" + methodName + ".png"));
 		}
+		**/
+		
+		/**public void screenShot(ITestResult result,WebDriver driver){
+			//using ITestResult.FAILURE is equals to result.getStatus then it enter into if condition
+			if(ITestResult.FAILURE==result.getStatus()){
+			try{
+			// To create reference of TakesScreenshot
+			TakesScreenshot screenshot=(TakesScreenshot)driver;
+			// Call method to capture screenshot
+			File src=screenshot.getScreenshotAs(OutputType.FILE);
+			// Copy files to specific location
+			// result.getName() will return name of test case so that screenshot name will be same as test case name
+			//FileUtils.copyFile(src, new File("D:\\"+result.getName()+".png"));
+			String currentDir = System.getProperty("user.dir");
+			FileUtils.copyFile(src, new File(currentDir + "/screenshots/" + result.getName() + ".png"));
+			System.out.println("Successfully captured a screenshot");
+			}catch (Exception e){
+			System.out.println("Exception while taking screenshot "+e.getMessage());
+			}
+			}**/
+		
+		/**public void takeScreenShot(String methodName, WebDriver driver) {
+	    	 File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+	         //The below method will save the screen shot in d drive with test method name 
+	            try {
+					FileUtils.copyFile(scrFile, new File(filePath+methodName+".png"));
+					System.out.println("***Placed screen shot in "+filePath+" ***");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+	    }
 		
 		/**public static String getScreenshot(WebDriver driver, String screenshotName) throws IOException{
 			String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
@@ -98,14 +131,6 @@ public class Util {
 			FileUtils.copyFile(source, finalDestination);
 			return destination;
 		}**/
-		
-		
-		
-			
+				
+}		
 
-		
-		
-
-		
-		
-}

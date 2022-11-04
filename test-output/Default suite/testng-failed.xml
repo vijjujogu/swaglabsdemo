@@ -3,12 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.swaglabsdemo.testscripts.VerifyNegativeLoginTest">
+      <class name="com.swaglabsdemo.testscripts.Demo">
         <methods>
-          <include name="loginTest"/>
+          <include name="takeScreenShotOnFailure"/>
           <include name="setUp"/>
+          <include name="test"/>
         </methods>
-      </class> <!-- com.swaglabsdemo.testscripts.VerifyNegativeLoginTest -->
+      </class> <!-- com.swaglabsdemo.testscripts.Demo -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

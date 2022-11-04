@@ -1,13 +1,22 @@
 package com.swaglabsdemo.TestBase;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.Properties;
 
-
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
@@ -25,6 +34,25 @@ public class TestBase {
 	public ExtentReports extent;
 	public ExtentTest extentTest;
 	Util commonUtil=new Util();
+	
+	
+	@BeforeMethod
+	@Parameters("browserName")
+	public void setUp(String browserName){
+		initialization(browserName);
+			
+	}
+	@AfterMethod 
+	public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 
+		if (testResult.getStatus() == ITestResult.FAILURE) { 
+			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+			
+			String currentDir = System.getProperty("user.dir");
+			FileUtils.copyFile(scrFile, new File(currentDir + "/screenshots/" + testResult.getName() +"-"+ Arrays.toString(testResult.getParameters()) +  ".jpg"));
+		}
+		tearDown();
+	}
+
 	
 	
 	public static void initialization(String browserName) {

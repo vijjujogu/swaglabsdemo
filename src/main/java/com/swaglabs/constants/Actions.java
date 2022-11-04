@@ -154,6 +154,21 @@ public class Actions {
 						return false;
 					}
 			}
+			public boolean verifyNumberResults(Object actual,Object expected,String message)
+			{
+				int actualresult=Integer.parseInt(((String) actual).replaceAll("[^0-9]", ""));
+				int expectedresult=Integer.parseInt(((String) actual).replaceAll("[^0-9]", ""));
+			
+				try {
+					Assert.assertEquals(actualresult, expectedresult);
+					System.out.println("PASS : " + message + ": " + "ACTUAL : " + actual + " 	" + "EXPECTED :" + expected);
+					return true;
+					
+				}
+				catch (AssertionError assertionError) {
+					return false;
+				}
+			}
 			
 			public void verifyPositiveLinks(WebDriver driver,String locatorKey)
 			{
@@ -208,6 +223,8 @@ public class Actions {
 				System.out.println("text");
 				
 				verifyPositiveResult(actualvalue, title, "error msg verified");
+				
+				
 				
 				
 			}

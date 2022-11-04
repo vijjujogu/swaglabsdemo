@@ -9,9 +9,9 @@
     <classes>
       <class name="com.swaglabsdemo.testscripts.VerifyMenuItemsTest">
         <methods>
+          <include name="takeScreenShotOnFailure"/>
+          <include name="verifyMenuItems" invocation-numbers="0 1 2"/>
           <include name="setUp"/>
-          <include name="verifyMenuItems"/>
-          <include name="exit"/>
         </methods>
       </class> <!-- com.swaglabsdemo.testscripts.VerifyMenuItemsTest -->
     </classes>
@@ -21,9 +21,9 @@
     <classes>
       <class name="com.swaglabsdemo.testscripts.VerifyMenuItemsTest">
         <methods>
+          <include name="takeScreenShotOnFailure"/>
+          <include name="verifyMenuItems" invocation-numbers="0 1 2"/>
           <include name="setUp"/>
-          <include name="verifyMenuItems"/>
-          <include name="exit"/>
         </methods>
       </class> <!-- com.swaglabsdemo.testscripts.VerifyMenuItemsTest -->
     </classes>

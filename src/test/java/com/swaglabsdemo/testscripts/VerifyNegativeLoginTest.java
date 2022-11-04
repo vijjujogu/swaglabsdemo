@@ -1,11 +1,9 @@
 package com.swaglabsdemo.testscripts;
 
-import java.io.IOException;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Parameters;
+
 import org.testng.annotations.Test;
 
 import com.swaglabs.constants.Actions;
@@ -18,12 +16,7 @@ public class VerifyNegativeLoginTest extends TestBase {
 	Util commonUtil=new Util();
 	
 	
-	@BeforeMethod
-	@Parameters("browserName")
-	public void setUp(String browserName){
-		initialization(browserName);
-			
-	}
+	
 	@DataProvider
 	public Object[][] getLoginData()
 	{
@@ -38,11 +31,5 @@ public class VerifyNegativeLoginTest extends TestBase {
 		driver.close();
 	}
 	
-	@AfterMethod
-	public void exit() throws Exception
-	{
-		//commonUtil.takeScreenshotAtEndOfTest(driver, "loginfailedscreenshot");
-		tearDown();
-	}
 
 }
