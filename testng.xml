@@ -2,7 +2,7 @@
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="TestSuite"  parallel="tests" >
+<suite name="TestSuite"> <!-- parallel="tests" -->
 
 <listeners>
 		<listener class-name="com.swaglabsdemo.util.ExtentReporterNG" />
@@ -10,7 +10,7 @@
 
 <test name="ChromeTest">
 
-<parameter name="browserName" value="chrome" />
+<!--<parameter name="browserName" value="chrome" />-->
 
 <classes>
 
@@ -22,7 +22,7 @@
 
 </test>
 
-<test name="edgeTest">
+<!--<test name="edgeTest">
 
 <parameter name="browserName" value="edge" />
 
@@ -34,7 +34,7 @@
 
 </classes>
 
-</test>
+</test>-->
 
 
 
