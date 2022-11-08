@@ -50,7 +50,7 @@ public class TestBase {
 	@BeforeMethod
 	//@Parameters("browserName")
 	public void setUp() throws IOException{
-		String browserName =System.getProperty("browser", "FF");
+		String browserName =System.getProperty("browser", "chrome");
 		initialization(browserName);
 			
 	}
