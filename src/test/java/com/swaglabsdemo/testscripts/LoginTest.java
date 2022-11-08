@@ -18,11 +18,10 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.swaglabs.constants.Actions;
-import com.swaglabs.constants.Constants;
+import com.swaglabs.constants.*;
 
 import com.swaglabsdemo.TestBase.TestBase;
-import com.swaglabsdemo.util.Constantvalues;
-import com.swaglabsdemo.util.Util;
+import com.swaglabsdemo.util.*;
 
 public class LoginTest extends TestBase{
 	
@@ -30,12 +29,7 @@ public class LoginTest extends TestBase{
 	Util ut=new Util();
 	
 	
-	@BeforeMethod
-	@Parameters("browserName")
-	public void setUp(String browserName){
-		initialization(browserName);
-			
-	}
+	
 	
 	
 	@DataProvider
@@ -60,14 +54,14 @@ public class LoginTest extends TestBase{
 		System.out.println("clicked");
 		
 	}
-	@Test
+	/**@Test
 	public void loginPageTitleTest(){
 		String title=ac.getTitleOfPage(driver);
 		ac.verifyPositiveResult(title,Constantvalues.Title.toString(),"verification passed");
-	}
+	}**/
 	
 	
-	@AfterMethod 
+	/**@AfterMethod 
 	public void takeScreenShotOnFailure(ITestResult testResult) throws IOException { 
 		if (testResult.getStatus() == ITestResult.FAILURE) { 
 			File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE); 

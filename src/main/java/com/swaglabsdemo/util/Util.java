@@ -14,15 +14,18 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.ITestResult;
 
-import com.swaglabs.constants.Constants;
+import com.swaglabs.constants.*;
+import com.swaglabsdemo.TestBase.TestBase;
 
 public class Util {
 	
@@ -77,8 +80,7 @@ public class Util {
 			return data;
 		}
 		
-		
-		
+				
 		
 		//logic for taking screenshots
 	/**	public static void takeScreenshotAtEndOfTest(WebDriver driver,String methodName) throws IOException {

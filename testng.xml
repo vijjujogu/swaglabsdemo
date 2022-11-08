@@ -2,7 +2,7 @@
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="TestSuite" thread-count="2" parallel="tests" >
+<suite name="TestSuite"  parallel="tests" >
 
 <listeners>
 		<listener class-name="com.swaglabsdemo.util.ExtentReporterNG" />
@@ -14,7 +14,7 @@
 
 <classes>
 
-<class name="com.swaglabsdemo.testscripts.LoginTest">
+<class name="com.swaglabsdemo.testscripts.VerifyNegativeLoginTest">
 
 </class>
 
@@ -28,7 +28,7 @@
 
 <classes>
 
-<class name="com.swaglabsdemo.testscripts.LoginTest">
+<class name="com.swaglabsdemo.testscripts.VerifyNegativeLoginTest">
 
 </class>
 

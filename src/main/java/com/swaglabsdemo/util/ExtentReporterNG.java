@@ -24,6 +24,7 @@ import com.swaglabsdemo.TestBase.TestBase;
 public class ExtentReporterNG implements IReporter {
 	
 	private ExtentReports extent;
+	TestBase base=new TestBase();
 	 
 
 	public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites,
@@ -49,10 +50,11 @@ public class ExtentReporterNG implements IReporter {
 
 	private void buildTestNodes(IResultMap tests, LogStatus status) {
 		ExtentTest test;
-
+		//String browserName =base.getBrowser();
 		if (tests.size() > 0) {
 			for (ITestResult result : tests.getAllResults()) {
 				test = extent.startTest(result.getMethod().getMethodName());
+				
 
 				test.setStartedTime(getTime(result.getStartMillis()));
 				test.setEndedTime(getTime(result.getEndMillis()));

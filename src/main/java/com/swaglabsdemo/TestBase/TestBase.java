@@ -3,16 +3,20 @@ package com.swaglabsdemo.TestBase;
 
 import java.io.File;
 import java.io.IOException;
+
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
 
+
+import com.swaglabsdemo.util.Util;
+
 import org.apache.commons.io.FileUtils;
+
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
+
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -20,10 +24,8 @@ import org.testng.annotations.Parameters;
 
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
-
 import com.swaglabs.constants.Constants;
-import com.swaglabsdemo.util.Constantvalues;
-import com.swaglabsdemo.util.Util;
+
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -36,9 +38,18 @@ public class TestBase {
 	Util commonUtil=new Util();
 	
 	
+	/**public static String getBrowser() {
+        Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+        String browserName = cap.getBrowserName().toLowerCase();
+        return browserName;
+    }
+	 * @throws IOException **/
+	
+
+	
 	@BeforeMethod
 	@Parameters("browserName")
-	public void setUp(String browserName){
+	public void setUp(String browserName) throws IOException{
 		initialization(browserName);
 			
 	}
@@ -55,26 +66,42 @@ public class TestBase {
 
 	
 	
-	public static void initialization(String browserName) {
+	public static void initialization(String browserName)  {
 		
-		DesiredCapabilities cap = new DesiredCapabilities();
-		cap.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
+		/**DesiredCapabilities cap = new DesiredCapabilities();
+		cap.setBrowserName(browserName);
+		//cap.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
+		
+		
+		try {
+			driver = new RemoteWebDriver(new URL("http://55.55.54.149:4444"),cap);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}**/
 		 Properties prop = Util.readProperties(Constants.configpath);
 		
-		
-		
-		if(browserName.equals(Constantvalues.CHROME.toString())){
+		if(browserName.equalsIgnoreCase("chrome")) {
 			driver=WebDriverManager.chromedriver().create();
 		}
-		else if(browserName.equals(Constantvalues.FF.toString())){
+		else if(browserName.equalsIgnoreCase("FF")) {
 			driver=WebDriverManager.firefoxdriver().create();
 		}
-		else if(browserName.equals(Constantvalues.IE.toString())){
-			driver=WebDriverManager.iedriver().create();
-		}
-		else if(browserName.equals(Constantvalues.EDGE.toString())){
+		else if(browserName.equalsIgnoreCase("edge")) {
 			driver=WebDriverManager.edgedriver().create();
 		}
+		/** if(browserName.equals(Constantvalues.CHROME.toString())){
+				driver=WebDriverManager.chromedriver().create();
+			}
+			else if(browserName.equals(Constantvalues.FF.toString())){
+				driver=WebDriverManager.firefoxdriver().create();
+			}
+			else if(browserName.equals(Constantvalues.IE.toString())){
+				driver=WebDriverManager.iedriver().create();
+			}
+			else if(browserName.equals(Constantvalues.EDGE.toString())){
+				driver=WebDriverManager.edgedriver().create();
+			}**/
 		
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
