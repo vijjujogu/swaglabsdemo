@@ -74,10 +74,10 @@ public class TestBase {
 		DesiredCapabilities cap = new DesiredCapabilities();
 		cap.setBrowserName(browserName);
 		//cap.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
-		
+		String jenkinsurl=System.getProperty("url");
 		
 		try {
-			driver = new RemoteWebDriver(new URL("http://55.55.54.149:4444"), cap);
+			driver = new RemoteWebDriver(new URL(jenkinsurl), cap);
 			//driver = new RemoteWebDriver(new URL("http://55.55.54.149:4444"),cap);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block

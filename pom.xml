@@ -30,6 +30,7 @@
         <systemPropertyVariables>
             <!--<my.schema>${my.schema}</my.schema>-->
              <parallelMode>${parallelMode}</parallelMode>
+             <url>${url}</url>
             <!-- <parallelMode>tests</parallelMode>-->
         </systemPropertyVariables> 
           <suiteXmlFiles>
