@@ -4,28 +4,16 @@
   <listeners>
     <listener class-name="com.swaglabsdemo.util.ExtentReporterNG"/>
   </listeners>
-  <test thread-count="5" parallel="tests" name="edgeTest(failed)">
-    <parameter name="browserName" value="edge"/>
-    <classes>
-      <class name="com.swaglabsdemo.testscripts.VerifyMenuItemsTest">
-        <methods>
-          <include name="takeScreenShotOnFailure"/>
-          <include name="verifyMenuItems"/>
-          <include name="setUp"/>
-        </methods>
-      </class> <!-- com.swaglabsdemo.testscripts.VerifyMenuItemsTest -->
-    </classes>
-  </test> <!-- edgeTest(failed) -->
   <test thread-count="5" parallel="tests" name="ChromeTest(failed)">
     <parameter name="browserName" value="chrome"/>
     <classes>
-      <class name="com.swaglabsdemo.testscripts.VerifyMenuItemsTest">
+      <class name="com.swaglabsdemo.testscripts.VerifyNegativeLoginTest">
         <methods>
+          <include name="loginTest" invocation-numbers="0"/>
           <include name="takeScreenShotOnFailure"/>
-          <include name="verifyMenuItems" invocation-numbers="0 1 2"/>
           <include name="setUp"/>
         </methods>
-      </class> <!-- com.swaglabsdemo.testscripts.VerifyMenuItemsTest -->
+      </class> <!-- com.swaglabsdemo.testscripts.VerifyNegativeLoginTest -->
     </classes>
   </test> <!-- ChromeTest(failed) -->
 </suite> <!-- Failed suite [TestSuite] -->

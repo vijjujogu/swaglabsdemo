@@ -3,7 +3,8 @@ package com.swaglabsdemo.TestBase;
 
 import java.io.File;
 import java.io.IOException;
-
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
@@ -16,7 +17,8 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -69,17 +71,18 @@ public class TestBase {
 	
 	public static void initialization(String browserName)  {
 		
-		/**DesiredCapabilities cap = new DesiredCapabilities();
+		DesiredCapabilities cap = new DesiredCapabilities();
 		cap.setBrowserName(browserName);
 		//cap.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
 		
 		
 		try {
-			driver = new RemoteWebDriver(new URL("http://55.55.54.149:4444"),cap);
+			driver = new RemoteWebDriver(new URL("http://55.55.54.149:4444"), cap);
+			//driver = new RemoteWebDriver(new URL("http://55.55.54.149:4444"),cap);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}**/
+		}
 		 Properties prop = Util.readProperties(Constants.configpath);
 		
 		if(browserName.equalsIgnoreCase("chrome")) {

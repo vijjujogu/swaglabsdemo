@@ -2,16 +2,14 @@
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="TestSuite"> <!-- parallel="tests" -->
+<suite name="TestSuite" >
 
 <listeners>
 		<listener class-name="com.swaglabsdemo.util.ExtentReporterNG" />
+		<listener class-name="com.swaglabsdemo.testscripts.ParallelExecutorSetter"/>
 	</listeners>
 
-<test name="ChromeTest">
-
-<!--<parameter name="browserName" value="chrome" />-->
-
+<test name="loginTest">
 <classes>
 
 <class name="com.swaglabsdemo.testscripts.VerifyNegativeLoginTest">
@@ -22,20 +20,16 @@
 
 </test>
 
-<!--<test name="edgeTest">
-
-<parameter name="browserName" value="edge" />
+<test name="checkouttest">
 
 <classes>
 
-<class name="com.swaglabsdemo.testscripts.VerifyNegativeLoginTest">
+<class name="com.swaglabsdemo.testscripts.verifyDetailsInCheckoutTest">
 
 </class>
 
 </classes>
 
-</test>-->
-
-
+</test>
 
 </suite>
